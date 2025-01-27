@@ -1,0 +1,24 @@
+.Entrance {
+	background-color: #fae8e8;
+	width: 400px;
+	padding: 50px;
+	margin: auto;
+	display: flex;
+	gap: 20px;
+	flex-direction: column;
+	font-family: cursive;
+	.label {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+	.button {
+		background-color: #ffffff;
+		height: 50px;
+		border-radius: 14px;
+		border: none;
+		cursor: pointer;
+		font-weight: 700;
+		font-size: 26px;
+	}
+}

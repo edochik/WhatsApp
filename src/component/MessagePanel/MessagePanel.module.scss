@@ -1,0 +1,24 @@
+.MessagePanel {
+	padding: 25px;
+	background-image: url('../../../public/background-2.svg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: 90%;
+	background-color: #efeae2;
+	display: flex;
+	row-gap: 20px;
+	flex-direction: column-reverse;
+	margin: 0;
+	list-style: none;
+	.item {
+		align-self: end;
+		.message {
+			margin: 0;
+			background-color: #dcf7c5;
+			padding: 5px 70px 10px 8px;
+			display: inline-block;
+			border-radius: 8px;
+		}
+	}
+}
