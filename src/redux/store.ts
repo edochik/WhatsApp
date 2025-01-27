@@ -3,11 +3,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { authSlice } from './authSlice/authSlice.ts'
 import { phoneSlice } from './phoneSlice/phoneSlice.ts'
+import { messagesSlice } from './messagesSlice/messagesSlice.ts'
 
 const store = configureStore({
 	reducer: {
 		authorization: authSlice.reducer,
-		phone: phoneSlice.reducer
+		phone: phoneSlice.reducer,
+		messages: messagesSlice.reducer
 	}
 })
 

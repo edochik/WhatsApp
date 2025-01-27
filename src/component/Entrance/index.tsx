@@ -11,7 +11,6 @@ const Entrance = () => {
   const { idInstance, apiTokenInstance, error } = useAppSelector(
     (state) => state.authorization
   );
-
   const isEmptyAuth = [idInstance, apiTokenInstance]
     .map((value) => value.length)
     .some((value) => value === 0);
@@ -21,7 +20,7 @@ const Entrance = () => {
     dispatch(updateAuth({ key: name as keyof InitialAuthState, value }));
   };
 
-  const handleAuthorization = async () => {
+  const handleAuthorization = () => {
     dispatch(fetchCheckWhatsappThunk({ idInstance, apiTokenInstance }));
   };
 

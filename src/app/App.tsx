@@ -12,27 +12,15 @@ export interface Message {
 
 function App() {
   const { isAuthorized } = useAppSelector((state) => state.authorization);
-  const { isHasPhoneNumber } = useAppSelector((state) => state.phone);
-  const [userPhone, setUserPhone] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState("79046469738");
-  const [messages, setMessages] = useState<Message[]>([]);
-
+  const { hasPhoneNumber } = useAppSelector((state) => state.phone);
   return (
     <>
       {!isAuthorized ? (
         <Entrance />
-      ) : !isHasPhoneNumber ? (
-        <PhoneInput
-          phoneNumber={phoneNumber}
-          setUserPhone={setUserPhone}
-          setPhoneNumber={setPhoneNumber}
-        />
+      ) : !hasPhoneNumber ? (
+        <PhoneInput />
       ) : (
-        <Chat
-          phoneNumber={phoneNumber}
-          setMessages={setMessages}
-          messages={messages}
-        />
+        <Chat />
       )}
     </>
   );

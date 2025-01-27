@@ -36,9 +36,9 @@ export const authSlice = createSlice({
 			state.isAuthorized = true;
 		})
 		builder.addCase(fetchCheckWhatsappThunk.rejected, (state, action) => {
-			console.log(action.payload, 'payload');
 			state.loading = "failed"
-			state.error = action.payload as string || null;
+			console.log(action.payload);
+			state.error = action.payload as string;
 		})
 	}
 })

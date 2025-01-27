@@ -1,46 +1,21 @@
-import { useState } from "react";
-import { apiTokenInstance, idInstance, URL } from "../../utils/api.ts";
 import s from "./PhoneInput.module.scss";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
+import { updatePhoneNumber } from "../../redux/phoneSlice/phoneSlice.ts";
+import { fetchPhoneThunk } from "../../redux/phoneSlice/fetchPhoneThunk.ts";
 
-interface PhoneInputProps {
-  setUserPhone: (arg: boolean) => void;
-  setPhoneNumber: (arg: string) => void;
-  phoneNumber: string;
-}
+const PhoneInput = () => {
+  const dispatch = useAppDispatch();
+  const { phoneNumber, error } = useAppSelector((state) => state.phone);
+  const { idInstance, apiTokenInstance } = useAppSelector(
+    (state) => state.authorization
+  );
 
-const PhoneInput = ({
-  setUserPhone,
-  setPhoneNumber,
-  phoneNumber,
-}: PhoneInputProps) => {
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const onSubmitAddUser = async () => {
-    try {
-      const response = await fetch(
-        `${URL}waInstance${idInstance}/checkWhatsapp/${apiTokenInstance}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            phoneNumber,
-          }),
-        }
-      );
-      if (!response.ok) {
-        throw Error();
-      }
-      const data = await response.json();
-      setUserPhone(true);
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(false);
-        setErrorMessage(error.message);
-      }
-    }
+  const handleUpdatePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    dispatch(updatePhoneNumber({ value }));
+  };
+  const onSubmitAddUser = () => {
+    dispatch(fetchPhoneThunk({ phoneNumber, idInstance, apiTokenInstance }));
   };
   return (
     <form
@@ -53,11 +28,17 @@ const PhoneInput = ({
       <input
         className={s.input}
         type="text"
-        name="phone"
+        name="phoneNumber"
+        aria-label="номер телефона"
         value={phoneNumber}
-        onChange={(e) => setPhoneNumber(e.target.value)}
+        onChange={(e) => handleUpdatePhone(e)}
       />
-      <button className={s.button} type="submit">
+      {error && <div>{error}</div>}
+      <button
+        className={s.button}
+        type="submit"
+        disabled={phoneNumber.length === 0}
+      >
         +
       </button>
     </form>
