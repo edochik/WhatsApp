@@ -30,8 +30,7 @@ export const phoneSlice = createSlice({
 			})
 			.addCase(fetchPhoneThunk.fulfilled, (state) => {
 				state.loading = "succeeded";
-				state.hasPhoneNumber = true
-				console.log('fetchPhoneThunk.fulfilled true');
+				state.hasPhoneNumber = true;
 			})
 			.addCase(fetchPhoneThunk.rejected, (state, action) => {
 				state.error = action.payload ?? "Неизвестная ошибка";

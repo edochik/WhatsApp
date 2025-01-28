@@ -11,7 +11,6 @@ export const fetchCheckWhatsappThunk = createAsyncThunk(
 			const response = await fetchCheckWhatsapp(data);
 			return response;
 		} catch {
-			
 			return rejectWithValue("Что-то пошло не так, попробуйте позже")
 		}
 	})

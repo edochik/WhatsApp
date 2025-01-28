@@ -6,9 +6,9 @@ const MessagePanel = () => {
   return (
     <ul className={s.MessagePanel}>
       {messages.map((item) => {
-        const { message } = item;
+        const { idMessage, message } = item;
         return (
-          <li className={s.item}>
+          <li className={s.item} key={idMessage}>
             <span className={s.message}>{message}</span>
           </li>
         );

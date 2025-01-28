@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Chat } from "../component/Chat";
 import { Entrance } from "../component/Entrance/";
 import "./App.module.scss";
@@ -13,17 +12,13 @@ export interface Message {
 function App() {
   const { isAuthorized } = useAppSelector((state) => state.authorization);
   const { hasPhoneNumber } = useAppSelector((state) => state.phone);
-  return (
-    <>
-      {!isAuthorized ? (
-        <Entrance />
-      ) : !hasPhoneNumber ? (
-        <PhoneInput />
-      ) : (
-        <Chat />
-      )}
-    </>
-  );
+  if (!isAuthorized) {
+    return <Entrance />;
+  }
+  if (!hasPhoneNumber) {
+    return <PhoneInput />;
+  }
+  return <Chat />;
 }
 
 export default App;

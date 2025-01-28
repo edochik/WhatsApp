@@ -17,7 +17,7 @@ export const fetchPhoneThunk = createAsyncThunk<
 	{ rejectValue: string }
 >(
 	'fetchPhoneThunk',
-	async (data: fetchPhoneData, { rejectWithValue }) => {
+	async (data, { rejectWithValue }) => {
 		try {
 			const response = await fetchPhone(data);
 			return response;

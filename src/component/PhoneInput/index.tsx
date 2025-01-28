@@ -14,15 +14,17 @@ const PhoneInput = () => {
     const { value } = e.target;
     dispatch(updatePhoneNumber({ value }));
   };
-  const onSubmitAddUser = () => {
+
+  const handleStartChat = () => {
     dispatch(fetchPhoneThunk({ phoneNumber, idInstance, apiTokenInstance }));
   };
+  
   return (
     <form
       className={s.form}
       onSubmit={(e) => {
         e.preventDefault();
-        onSubmitAddUser();
+        handleStartChat();
       }}
     >
       <input
