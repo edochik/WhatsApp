@@ -48,21 +48,37 @@ const answer = {
 };
 ```
 
-```js
-{
-    "statusCode": 404,
-    "timestamp": "2025-01-28T09:46:22.940Z",
-    "path": "/waInstance1103180871/deleteNotification/0250681f73224ed1b1c02e53e17d9aa35e72b6ad22f44c6996/1",
-    "message": "Cannot GET /waInstance1103180871/deleteNotification/0250681f73224ed1b1c02e53e17d9aa35e72b6ad22f44c6996/1"
-}
-```
-
 ```
 {
-  "method": "checkwhatsapp",
-  "used": 100,
-  "total": 100,
-  "status": "QUOTE_EXCEEDED",
-  "description": "Monthly quota has been exceeded. Please go to your personal account and change the tariff to business https://console.green-api.com"
+    "receiptId": 7,
+    "body": {
+        "typeWebhook": "incomingMessageReceived",
+        "instanceData": {
+            "idInstance": 1103182240,
+            "wid": "79046469738@c.us",
+            "typeInstance": "whatsapp"
+        },
+        "timestamp": 1738067629,
+        "idMessage": "3F50D4ABBC8CD9F2AC8F",
+        "senderData": {
+            "chatId": "79110995379@c.us",
+            "chatName": "Marina",
+            "sender": "79110995379@c.us",
+            "senderName": "Marina",
+            "senderContactName": "Любимая"
+        },
+        "messageData": {
+            "typeMessage": "extendedTextMessage",
+            "extendedTextMessageData": {
+                "text": "df",
+                "description": "",
+                "title": "",
+                "previewType": "None",
+                "jpegThumbnail": "",
+                "forwardingScore": 0,
+                "isForwarded": false
+            }
+        }
+    }
 }
 ```

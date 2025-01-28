@@ -1,7 +1,7 @@
 import { createListenerMiddleware, isAnyOf } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "./store.ts";
-import { fetchPhoneThunk } from "./phoneSlice/fetchPhoneThunk.ts";
 import { fetchListenerMessageThunk } from "./messagesSlice/fetchListenerMessageThunk.ts";
+import { fetchCheckWhatsappThunk } from "./authSlice/fetchCheckWhatsappThunk.ts";
 
 export const listenerMiddleware = createListenerMiddleware();
 export const startAppListening = listenerMiddleware.startListening.withTypes<
@@ -11,10 +11,9 @@ export const startAppListening = listenerMiddleware.startListening.withTypes<
 
 
 startAppListening({
-	matcher: isAnyOf(fetchPhoneThunk.fulfilled),
+	matcher: isAnyOf(fetchCheckWhatsappThunk.fulfilled, fetchListenerMessageThunk.fulfilled),
 	effect: async (action, listenerApi) => {
-		const { idInstance, apiTokenInstance } = listenerApi.getState().authorization;
-		const { phoneNumber } = listenerApi.getState().phone;
+		const { idInstance, apiTokenInstance, phoneNumber } = listenerApi.getState().authorization;
 		listenerApi.dispatch(fetchListenerMessageThunk({ idInstance, apiTokenInstance, phoneNumber }))
 	}
 })

@@ -8,10 +8,10 @@ import { fetchCheckWhatsappThunk } from "../../redux/authSlice/fetchCheckWhatsap
 
 const Entrance = () => {
   const dispatch = useAppDispatch();
-  const { idInstance, apiTokenInstance, error } = useAppSelector(
+  const { idInstance, apiTokenInstance, phoneNumber, error } = useAppSelector(
     (state) => state.authorization
   );
-  const isEmptyAuth = [idInstance, apiTokenInstance]
+  const isEmptyAuth = [idInstance, apiTokenInstance, phoneNumber]
     .map((value) => value.length)
     .some((value) => value === 0);
 
@@ -21,7 +21,9 @@ const Entrance = () => {
   };
 
   const handleAuthorization = () => {
-    dispatch(fetchCheckWhatsappThunk({ idInstance, apiTokenInstance }));
+    if (phoneNumber.length === 11) {
+      dispatch(fetchCheckWhatsappThunk({ idInstance, apiTokenInstance }));
+    }
   };
 
   return (
@@ -50,6 +52,16 @@ const Entrance = () => {
           onChange={(e) => handleUpdateAuth(e)}
           type="text"
           name="apiTokenInstance"
+        />
+      </label>
+      <label className={s.label}>
+        phone:
+        <input
+          className={s.input}
+          value={phoneNumber}
+          onChange={(e) => handleUpdateAuth(e)}
+          type="text"
+          name="phoneNumber"
         />
       </label>
       {error && <div>{error}</div>}

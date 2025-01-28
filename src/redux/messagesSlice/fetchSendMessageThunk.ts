@@ -1,9 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchSendMessage } from "./fetchSendMessage.ts";
-import { fetchPhoneData } from "../phoneSlice/fetchPhoneThunk.ts";
-import { InitialMessageState } from "./messagesSlice.ts";
 
-export type fetchSendMessageData = fetchPhoneData & Pick<InitialMessageState, 'message'>
+export type fetchSendMessageData = {
+	idInstance: string,
+	apiTokenInstance: string,
+	phoneNumber: string,
+	message: string
+}
 
 interface sendMessageResponse {
 	idMessage: string

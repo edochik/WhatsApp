@@ -5,8 +5,7 @@ import { updateMessage } from "../../redux/messagesSlice/messagesSlice.ts";
 import { fetchSendMessageThunk } from "../../redux/messagesSlice/fetchSendMessageThunk.ts";
 
 const InputMessage = () => {
-  const { phoneNumber } = useAppSelector((state) => state.phone);
-  const { idInstance, apiTokenInstance } = useAppSelector(
+  const { idInstance, apiTokenInstance, phoneNumber } = useAppSelector(
     (state) => state.authorization
   );
   const { message } = useAppSelector((state) => state.messages);

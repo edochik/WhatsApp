@@ -1,33 +1,40 @@
 import { URL } from "../../utils/api.ts"
 
 const ms: number = 3000;
-const receiveTimeout: number = 60
-interface ReceiveNotification {
+// const receiveTimeout: number = 60
+export interface WebhookMessage {
 	receiptId: number;
 	body: {
-		typeWebhook: string,
+		typeWebhook: string;
 		instanceData: {
-			idInstance: number,
-			wid: string,
-			typeInstance: "string",
-		},
-		timestamp: number,
-		idMessage: string,
+			idInstance: number;
+			wid: string;
+			typeInstance: string;
+		};
+		timestamp: number;
+		idMessage: string;
 		senderData: {
-			chatId: string,
-			chatName: string,
-			sender: string,
-			senderName: string,
-			senderContactName: string,
-		},
+			chatId: string;
+			chatName: string;
+			sender: string;
+			senderName: string;
+			senderContactName: string;
+		};
 		messageData: {
-			typeMessage: string,
-			textMessageData: {
-				textMessage: string,
-			},
-		},
+			typeMessage: string;
+			extendedTextMessageData: {
+				text: string;
+				description: string;
+				title: string;
+				previewType: string;
+				jpegThumbnail: string;
+				forwardingScore: number;
+				isForwarded: boolean;
+			};
+		};
 	};
 }
+
 
 
 export const fetchListenerMessage = async (data: Record<string, string>) => {
@@ -35,28 +42,29 @@ export const fetchListenerMessage = async (data: Record<string, string>) => {
 	while (true) {
 		try {
 			// console.log('перед response');
-			const response = await fetch(`${URL}waInstance${idInstance}/receiveNotification/${apiTokenInstance}?receiveTimeout=${receiveTimeout}`);
+			const response = await fetch(`${URL}waInstance${idInstance}/receiveNotification/${apiTokenInstance}`);
 			if (response === null || !response.ok) {
 				// console.log('создаем ошибку', response);
 				throw new Error()
 			}
 			// console.log('перед результатом');
-			const result: ReceiveNotification = await response.json();
+			const result: WebhookMessage = await response.json();
 			// console.log(result);
 			if (result.body.senderData.chatId.startsWith(phoneNumber)) {
 				const { receiptId } = result;
 				await fetchDeleteNotification({ idInstance, apiTokenInstance, receiptId })
 			}
-			fetchListenerMessage({ idInstance, apiTokenInstance, phoneNumber });
-			console.log('до сюда не доходим');
-			console.log(result.body.idMessage, 'result.body.idMessage');
-			console.log(result, 'result.body.messageData');
+			// fetchListenerMessage({ idInstance, apiTokenInstance, phoneNumber });
+			// console.log('до сюда не доходим');
+			// console.log(result);
+			// console.log(result.body.idMessage, 'result.body.idMessage');
+			// console.log(result.body.messageData.extendedTextMessageData.text, 'result.body.messageData');
 			return {
-				textMessage: result.body.messageData.textMessageData.textMessage,
+				textMessage: result.body.messageData.extendedTextMessageData.text,
 				idMessage: result.body.idMessage
 			}
 		} catch {
-			// console.log('я слушая все');
+			console.log('я слушая все');
 			await sleep(ms)
 		}
 	}

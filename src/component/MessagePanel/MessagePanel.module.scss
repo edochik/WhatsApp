@@ -13,13 +13,17 @@
 	list-style: none;
 	justify-content: end;
 	.item {
+		width: 50%;
+		overflow-wrap: break-word;
+		margin: 0;
+		align-self: start;
+		background-color: #fff;
+		padding: 5px 70px 10px 8px;
+		display: inline-block;
+		border-radius: 8px;
+	}
+	.own_message {
 		align-self: end;
-		.message {
-			margin: 0;
-			background-color: #dcf7c5;
-			padding: 5px 70px 10px 8px;
-			display: inline-block;
-			border-radius: 8px;
-		}
+		background-color: #dcf7c5;
 	}
 }

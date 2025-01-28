@@ -5,6 +5,7 @@ import { fetchListenerMessageThunk } from "./fetchListenerMessageThunk.ts";
 export interface Message {
 	idMessage: string;
 	textMessage: string;
+	isOwnMessage: boolean
 }
 export interface InitialMessageState {
 	messages: Message[]
@@ -35,7 +36,7 @@ export const messagesSlice = createSlice({
 			.addCase(fetchSendMessageThunk.fulfilled, (state, action) => {
 				const { idMessage } = action.payload
 				const { message } = state
-				state.messages.push({ idMessage, textMessage: message })
+				state.messages.push({ idMessage, textMessage: message, isOwnMessage: true })
 				state.message = ""
 			})
 			.addCase(fetchSendMessageThunk.rejected, (state, action) => {
@@ -44,7 +45,7 @@ export const messagesSlice = createSlice({
 			})
 			.addCase(fetchListenerMessageThunk.fulfilled, (state, action) => {
 				const { idMessage, textMessage } = action.payload
-				state.messages.push({ idMessage, textMessage });
+				state.messages.push({ idMessage, textMessage, isOwnMessage: false });
 			})
 			.addCase(fetchListenerMessageThunk.rejected, (state, action) => {
 			})

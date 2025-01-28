@@ -7,16 +7,17 @@ export interface InitialAuthState {
 	idInstance: string;
 	apiTokenInstance: string;
 	isAuthorized: boolean,
+	phoneNumber: string,
 }
 
 const initialState: InitialAuthState = {
 	error: null,
 	loading: 'idle',
-	idInstance: '1103180871',
-	apiTokenInstance: '0250681f73224ed1b1c02e53e17d9aa35e72b6ad22f44c6996',
-	isAuthorized: false
+	idInstance: '1103182240',
+	apiTokenInstance: '86613b0df72249609407c4b78b865aa39de60ebcaf644e6cb3',
+	isAuthorized: false,
+	phoneNumber: '79110995379',
 }
-
 
 export const authSlice = createSlice({
 	name: 'authSlice',
@@ -25,7 +26,7 @@ export const authSlice = createSlice({
 		updateAuth: (state, action: PayloadAction<{ key: keyof InitialAuthState, value: string }>) => {
 			const { key, value } = action.payload;
 			(state[key] as string) = value;
-		}
+		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchCheckWhatsappThunk.pending, (state) => {
@@ -37,7 +38,6 @@ export const authSlice = createSlice({
 		})
 		builder.addCase(fetchCheckWhatsappThunk.rejected, (state, action) => {
 			state.loading = "failed"
-			console.log(action.payload);
 			state.error = action.payload as string;
 		})
 	}

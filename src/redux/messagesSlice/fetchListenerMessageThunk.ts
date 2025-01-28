@@ -10,7 +10,6 @@ export const fetchListenerMessageThunk = createAsyncThunk<
 		async (data, { rejectWithValue }) => {
 			try {
 				const response = await fetchListenerMessage(data);
-				console.log(response, 'ответ не доходит');
 				return response
 			} catch {
 				return rejectWithValue("Ошибка получения данных")
