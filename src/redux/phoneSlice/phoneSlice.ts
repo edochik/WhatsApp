@@ -11,7 +11,7 @@ export interface InitialPhoneState {
 const initialState: InitialPhoneState = {
 	error: null,
 	loading: 'idle',
-	phoneNumber: '',
+	phoneNumber: '79110995379',
 	hasPhoneNumber: false
 }
 

@@ -12,7 +12,14 @@
 сообщение // написанное человеком в чате
 
 ```js
-//получаем данные по сообщению
+//проверка она присутствия ответа
+answer.body.senderData.chatId.startsWith("79110995379");
+
+// вытаскиваем сообщение
+answer.body.messageData.textMessageData.textMessage;
+// вытаскиваем id message
+answer.body.idMessage;
+
 const answer = {
   receiptId: 1, //!!! нужно для удаления
   body: {
@@ -39,4 +46,23 @@ const answer = {
     },
   },
 };
+```
+
+```js
+{
+    "statusCode": 404,
+    "timestamp": "2025-01-28T09:46:22.940Z",
+    "path": "/waInstance1103180871/deleteNotification/0250681f73224ed1b1c02e53e17d9aa35e72b6ad22f44c6996/1",
+    "message": "Cannot GET /waInstance1103180871/deleteNotification/0250681f73224ed1b1c02e53e17d9aa35e72b6ad22f44c6996/1"
+}
+```
+
+```
+{
+  "method": "checkwhatsapp",
+  "used": 100,
+  "total": 100,
+  "status": "QUOTE_EXCEEDED",
+  "description": "Monthly quota has been exceeded. Please go to your personal account and change the tariff to business https://console.green-api.com"
+}
 ```

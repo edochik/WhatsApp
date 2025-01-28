@@ -2,10 +2,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchSendMessageThunk } from "./fetchSendMessageThunk.ts";
 import { fetchListenerMessageThunk } from "./fetchListenerMessageThunk.ts";
 
-interface Message {
+export interface Message {
 	idMessage: string;
-	message: string;
-
+	textMessage: string;
 }
 export interface InitialMessageState {
 	messages: Message[]
@@ -36,7 +35,7 @@ export const messagesSlice = createSlice({
 			.addCase(fetchSendMessageThunk.fulfilled, (state, action) => {
 				const { idMessage } = action.payload
 				const { message } = state
-				state.messages.push({ idMessage, message })
+				state.messages.push({ idMessage, textMessage: message })
 				state.message = ""
 			})
 			.addCase(fetchSendMessageThunk.rejected, (state, action) => {
@@ -44,6 +43,8 @@ export const messagesSlice = createSlice({
 			.addCase(fetchListenerMessageThunk.pending, (state, action) => {
 			})
 			.addCase(fetchListenerMessageThunk.fulfilled, (state, action) => {
+				const { idMessage, textMessage } = action.payload
+				state.messages.push({ idMessage, textMessage });
 			})
 			.addCase(fetchListenerMessageThunk.rejected, (state, action) => {
 			})

@@ -14,6 +14,7 @@ startAppListening({
 	matcher: isAnyOf(fetchPhoneThunk.fulfilled),
 	effect: async (action, listenerApi) => {
 		const { idInstance, apiTokenInstance } = listenerApi.getState().authorization;
-		listenerApi.dispatch(fetchListenerMessageThunk({ idInstance, apiTokenInstance }))
+		const { phoneNumber } = listenerApi.getState().phone;
+		listenerApi.dispatch(fetchListenerMessageThunk({ idInstance, apiTokenInstance, phoneNumber }))
 	}
 })
