@@ -82,3 +82,24 @@ const answer = {
     }
 }
 ```
+
+```
+{
+  "receiptId": 1,
+  "body": {
+    "typeWebhook": "outgoingMessageStatus",
+    "chatId": "79999999999@c.us",
+    "instanceData": {
+      "idInstance": 1103182240,
+      "wid": "79046469738@c.us",
+      "typeInstance": "whatsapp"
+    },
+    "timestamp": 1738077372,
+    "idMessage": "BAE5261A96A92A73",
+    "status": "noAccount",
+    "sendByApi": true
+  }
+}
+```
+<!-- fetch(`https://api.green-api.com/waInstance1103182240/deleteNotification/86613b0df72249609407c4b78b865aa39de60ebcaf644e6cb3/1`)
+ -->

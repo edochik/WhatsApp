@@ -1,16 +1,17 @@
-import s from "./Entrance.module.scss";
+import s from "./Authorization.module.scss";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
 import {
   InitialAuthState,
   updateAuth,
 } from "../../redux/authSlice/authSlice.ts";
-import { fetchCheckWhatsappThunk } from "../../redux/authSlice/fetchCheckWhatsappThunk.ts";
+import { fetchStateInstanceThunk } from "../../redux/authSlice/fetchStateInstanceThunk.ts";
 
-const Entrance = () => {
+const Authorization = () => {
   const dispatch = useAppDispatch();
   const { idInstance, apiTokenInstance, phoneNumber, error } = useAppSelector(
     (state) => state.authorization
   );
+
   const isEmptyAuth = [idInstance, apiTokenInstance, phoneNumber]
     .map((value) => value.length)
     .some((value) => value === 0);
@@ -22,13 +23,13 @@ const Entrance = () => {
 
   const handleAuthorization = () => {
     if (phoneNumber.length === 11) {
-      dispatch(fetchCheckWhatsappThunk({ idInstance, apiTokenInstance }));
+      dispatch(fetchStateInstanceThunk({ idInstance, apiTokenInstance }));
     }
   };
 
   return (
     <form
-      className={s.Entrance}
+      className={s.Authorization}
       onSubmit={(event) => {
         event.preventDefault();
         handleAuthorization();
@@ -72,4 +73,4 @@ const Entrance = () => {
   );
 };
 
-export { Entrance };
+export { Authorization as Entrance };
