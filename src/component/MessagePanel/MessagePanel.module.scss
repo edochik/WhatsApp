@@ -1,6 +1,6 @@
 .MessagePanel {
 	padding: 25px;
-	background-image: url('../../../public/background-2.svg');
+	background-image: url('../../../public/background.svg');
 	background-repeat: no-repeat;
 	background-size: cover;
 	width: 100%;
@@ -8,12 +8,12 @@
 	background-color: #efeae2;
 	display: flex;
 	row-gap: 20px;
-	flex-direction: column;
+	flex-direction: column-reverse;
 	margin: 0;
 	list-style: none;
-	justify-content: end;
+	overflow-y: scroll;
 	.item {
-		width: 50%;
+		max-width: 50%;
 		overflow-wrap: break-word;
 		margin: 0;
 		align-self: start;

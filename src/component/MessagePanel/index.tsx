@@ -3,8 +3,8 @@ import { useAppSelector } from "../../redux/hooks.ts";
 import s from "./MessagePanel.module.scss";
 
 const MessagePanel = () => {
-  const { messages } = useAppSelector((state) => state.messages);
-  console.log(messages);
+  const { messages } = useAppSelector((state) => state.chat);
+
   return (
     <ul className={s.MessagePanel}>
       {messages.map((message) => {

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchListenerMessage } from "./fetchListenerMessage.ts";
-import { Message } from "./messagesSlice.ts";
+import { Message } from "./chatSlice.ts";
 
 export const fetchListenerMessageThunk = createAsyncThunk<
 	Message,

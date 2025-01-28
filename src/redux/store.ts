@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { authSlice } from './authSlice/authSlice.ts'
-import { messagesSlice } from './messagesSlice/messagesSlice.ts'
+import { chatSlice } from './chatSlice/chatSlice.ts'
 import { listenerMiddleware } from './listenerMiddleware.ts'
 
 const store = configureStore({
 	reducer: {
 		authorization: authSlice.reducer,
-		messages: messagesSlice.reducer
+		chat: chatSlice.reducer
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware().prepend(listenerMiddleware.middleware),

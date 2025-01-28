@@ -7,22 +7,21 @@ export interface Message {
 	textMessage: string;
 	isOwnMessage: boolean
 }
+
 export interface InitialMessageState {
 	messages: Message[]
 	message: string
-	error: null | string; //!
-	loading: 'idle' | 'pending' | 'succeeded' | 'failed'; //! какая логика должна быть если это чат
+	error: null | string;
 }
 
 const initialState: InitialMessageState = {
 	error: null,
-	loading: 'idle',
 	messages: [],
 	message: '',
 }
 
-export const messagesSlice = createSlice({
-	name: 'messagesSlice',
+export const chatSlice = createSlice({
+	name: 'chatSlice',
 	initialState,
 	reducers: {
 		updateMessage: (state, action: PayloadAction<{ value: string }>) => {
@@ -31,25 +30,17 @@ export const messagesSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(fetchSendMessageThunk.pending, (state, action) => {
-			})
 			.addCase(fetchSendMessageThunk.fulfilled, (state, action) => {
 				const { idMessage } = action.payload
 				const { message } = state
-				state.messages.push({ idMessage, textMessage: message, isOwnMessage: true })
+				state.messages.unshift({ idMessage, textMessage: message, isOwnMessage: true })
 				state.message = ""
-			})
-			.addCase(fetchSendMessageThunk.rejected, (state, action) => {
-			})
-			.addCase(fetchListenerMessageThunk.pending, (state, action) => {
 			})
 			.addCase(fetchListenerMessageThunk.fulfilled, (state, action) => {
 				const { idMessage, textMessage } = action.payload
-				state.messages.push({ idMessage, textMessage, isOwnMessage: false });
-			})
-			.addCase(fetchListenerMessageThunk.rejected, (state, action) => {
+				state.messages.unshift({ idMessage, textMessage, isOwnMessage: false });
 			})
 	}
 })
 
-export const { updateMessage } = messagesSlice.actions;
+export const { updateMessage } = chatSlice.actions;

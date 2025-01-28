@@ -1,14 +1,14 @@
 import { ArrowRightIcon } from "../../assets/icons/ArrowRightIcon.tsx";
 import s from "./InputMessage.module.scss";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
-import { updateMessage } from "../../redux/messagesSlice/messagesSlice.ts";
-import { fetchSendMessageThunk } from "../../redux/messagesSlice/fetchSendMessageThunk.ts";
+import { updateMessage } from "../../redux/chatSlice/chatSlice.ts";
+import { fetchSendMessageThunk } from "../../redux/chatSlice/fetchSendMessageThunk.ts";
 
 const InputMessage = () => {
   const { idInstance, apiTokenInstance, phoneNumber } = useAppSelector(
     (state) => state.authorization
   );
-  const { message } = useAppSelector((state) => state.messages);
+  const { message } = useAppSelector((state) => state.chat);
   const dispatch = useAppDispatch();
 
   const handleUpdateMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
