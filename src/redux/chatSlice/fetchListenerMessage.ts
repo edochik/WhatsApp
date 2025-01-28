@@ -23,12 +23,8 @@ export const fetchListenerMessage = async (data: Record<string, string>) => {
 				idMessage: result.body.idMessage
 			}
 		} catch {
+			console.log(ms);
 			await sleep(ms)
 		}
 	}
 }
-
-
-
-
-

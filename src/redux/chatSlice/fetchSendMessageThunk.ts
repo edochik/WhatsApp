@@ -11,6 +11,7 @@ export type fetchSendMessageData = {
 interface sendMessageResponse {
 	idMessage: string
 }
+
 export const fetchSendMessageThunk = createAsyncThunk<
 	sendMessageResponse,
 	fetchSendMessageData,
