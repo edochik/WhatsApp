@@ -73,4 +73,4 @@ const Authorization = () => {
   );
 };
 
-export { Authorization as Entrance };
+export { Authorization };

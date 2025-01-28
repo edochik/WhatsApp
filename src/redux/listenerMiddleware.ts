@@ -1,7 +1,7 @@
 import { createListenerMiddleware, isAnyOf } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "./store.ts";
-import { fetchListenerMessageThunk } from "./chatSlice/fetchListenerMessageThunk.ts";
 import { fetchStateInstanceThunk } from "./authSlice/fetchStateInstanceThunk.ts";
+import { fetchReceiveNotificationThunk } from "./chatSlice/thunk/fetchReceiveNotificationThunk.ts";
 
 export const listenerMiddleware = createListenerMiddleware();
 export const startAppListening = listenerMiddleware.startListening.withTypes<
@@ -10,9 +10,9 @@ export const startAppListening = listenerMiddleware.startListening.withTypes<
 >();
 
 startAppListening({
-	matcher: isAnyOf(fetchStateInstanceThunk.fulfilled, fetchListenerMessageThunk.fulfilled),
+	matcher: isAnyOf(fetchStateInstanceThunk.fulfilled, fetchReceiveNotificationThunk.fulfilled),
 	effect: async (_, listenerApi) => {
 		const { idInstance, apiTokenInstance, phoneNumber } = listenerApi.getState().authorization;
-		listenerApi.dispatch(fetchListenerMessageThunk({ idInstance, apiTokenInstance, phoneNumber }))
+		listenerApi.dispatch(fetchReceiveNotificationThunk({ idInstance, apiTokenInstance, phoneNumber }))
 	}
 })

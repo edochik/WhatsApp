@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchSendMessage } from "./fetchSendMessage.ts";
+import { fetchSendMessage } from "../fetch/fetchSendMessage.ts";
 
 export type fetchSendMessageData = {
 	idInstance: string,

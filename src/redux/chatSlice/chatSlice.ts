@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchSendMessageThunk } from "./fetchSendMessageThunk.ts";
-import { fetchListenerMessageThunk } from "./fetchListenerMessageThunk.ts";
+import { fetchSendMessageThunk } from "./thunk/fetchSendMessageThunk.ts";
+import { fetchReceiveNotificationThunk } from "./thunk/fetchReceiveNotificationThunk.ts";
 
 export interface Message {
 	idMessage: string;
@@ -36,7 +36,7 @@ export const chatSlice = createSlice({
 				state.messages.unshift({ idMessage, textMessage: message, isOwnMessage: true })
 				state.message = ""
 			})
-			.addCase(fetchListenerMessageThunk.fulfilled, (state, action) => {
+			.addCase(fetchReceiveNotificationThunk.fulfilled, (state, action) => {
 				const { idMessage, textMessage } = action.payload
 				state.messages.unshift({ idMessage, textMessage, isOwnMessage: false });
 			})

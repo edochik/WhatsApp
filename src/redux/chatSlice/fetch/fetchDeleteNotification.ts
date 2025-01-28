@@ -1,4 +1,4 @@
-import { URL } from "../../utils/api.ts";
+import { URL } from "../../../utils/api.ts";
 
 interface Data {
 	idInstance: string,

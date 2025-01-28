@@ -1,11 +1,11 @@
-import { URL } from "../../utils/api.ts"
-import { fetchDeleteNotification } from "./fetchDeleteNotification.ts";
-import { WebhookMessage } from "./interface.ts";
+import { URL } from "../../../utils/api.ts";
 import { sleep } from "./sleep.ts";
+import { fetchDeleteNotification } from "./fetchDeleteNotification.ts";
+import { WebhookMessage } from "./WebhookMessage.interface.ts";
 
 const ms: number = 3000;
 
-export const fetchListenerMessage = async (data: Record<string, string>) => {
+export const fetchReceiveNotification = async (data: Record<string, string>) => {
 	const { idInstance, apiTokenInstance, phoneNumber } = data;
 	while (true) {
 		try {
@@ -23,7 +23,6 @@ export const fetchListenerMessage = async (data: Record<string, string>) => {
 				idMessage: result.body.idMessage
 			}
 		} catch {
-			console.log(ms);
 			await sleep(ms)
 		}
 	}

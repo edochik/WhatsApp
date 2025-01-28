@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchStateInstanceThunk as fetchStateInstanceThunk } from "./fetchStateInstanceThunk.ts";
+import { fetchStateInstanceThunk } from "./fetchStateInstanceThunk.ts";
 
 export interface InitialAuthState {
 	error: null | string;

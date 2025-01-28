@@ -1,5 +1,6 @@
-import { URL } from "../../utils/api.ts";
-import { fetchSendMessageData } from "./fetchSendMessageThunk.ts";
+import { URL } from "../../../utils/api.ts";
+import { fetchSendMessageData } from "../thunk/fetchSendMessageThunk.ts";
+
 
 export const fetchSendMessage = async (data: fetchSendMessageData) => {
 	const { idInstance, apiTokenInstance, phoneNumber, message } = data;
