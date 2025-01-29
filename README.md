@@ -1,105 +1,44 @@
-Минимальная реализация.
+# WhatsApp-приложение
 
-1. Левое меню со списком людей.
-2. По центру панель куда будут сообщения выводится
-3. С низу ввод сообщений
-   все ?
+## Описание
 
-вход {{apiUrl}}/waInstance{{idInstance}}/getStateInstance/{{apiTokenInstance}}
-проверка {{apiUrl}}/waInstance{{idInstance}}/checkWhatsapp/{{apiTokenInstance}}
-отправить сообщение POST {{apiUrl}}/waInstance{{idInstance}}/sendMessage/{{apiTokenInstance}}
+Это приложение предоставляет возможность установить чат с пользователем в WhatApp.
 
-сообщение // написанное человеком в чате
+Необходимо:
+1. Зарегистрироваться https://console.green-api.com/auth;
+2. Перейти: Инстансы => Создать инстанс;
+3. Выполнить инструкцию по авторизации инстанса;
+4. В инстанс переключить "Получать уведомления о входящих сообщениях и файлах", на Да;
+5. Теперь берем из инстанса idInstance, apiTokenInstance;
+6. В приложении вводим idInstance, apiTokenInstance и номер телефона;
+7. Пишем сообщение пользователю;
 
-```js
-//проверка она присутствия ответа
-answer.body.senderData.chatId.startsWith("79110995379");
+## Технологии
 
-// вытаскиваем сообщение
-answer.body.messageData.textMessageData.textMessage;
-// вытаскиваем id message
-answer.body.idMessage;
+- **TypeScript**
+- **React** (с использованием React Hooks)
+- **Redux/Toolkit**
 
-const answer = {
-  receiptId: 1, //!!! нужно для удаления
-  body: {
-    typeWebhook: "incomingMessageReceived",
-    instanceData: {
-      idInstance: 1103180871,
-      wid: "79046469738@c.us",
-      typeInstance: "whatsapp",
-    },
-    timestamp: 1738054306, // время можно вывести
-    idMessage: "3AB14A203D9FAFA9DAA7", //!!!! для того чтобы выводить его в списке
-    senderData: {
-      chatId: "79110995379@c.us",
-      chatName: "Marina",
-      sender: "79110995379@c.us",
-      senderName: "Marina",
-      senderContactName: "Любимая",
-    },
-    messageData: {
-      typeMessage: "textMessage",
-      textMessageData: {
-        textMessage: "Кук", // текст сообщения
-      },
-    },
-  },
-};
-```
+## Как запустить проект
 
-```
-{
-    "receiptId": 7,
-    "body": {
-        "typeWebhook": "incomingMessageReceived",
-        "instanceData": {
-            "idInstance": 1103182240,
-            "wid": "79046469738@c.us",
-            "typeInstance": "whatsapp"
-        },
-        "timestamp": 1738067629,
-        "idMessage": "3F50D4ABBC8CD9F2AC8F",
-        "senderData": {
-            "chatId": "79110995379@c.us",
-            "chatName": "Marina",
-            "sender": "79110995379@c.us",
-            "senderName": "Marina",
-            "senderContactName": "Любимая"
-        },
-        "messageData": {
-            "typeMessage": "extendedTextMessage",
-            "extendedTextMessageData": {
-                "text": "df",
-                "description": "",
-                "title": "",
-                "previewType": "None",
-                "jpegThumbnail": "",
-                "forwardingScore": 0,
-                "isForwarded": false
-            }
-        }
-    }
-}
-```
+1. **Клонируйте репозиторий**
 
-```
-{
-  "receiptId": 1,
-  "body": {
-    "typeWebhook": "outgoingMessageStatus",
-    "chatId": "79999999999@c.us",
-    "instanceData": {
-      "idInstance": 1103182240,
-      "wid": "79046469738@c.us",
-      "typeInstance": "whatsapp"
-    },
-    "timestamp": 1738077372,
-    "idMessage": "BAE5261A96A92A73",
-    "status": "noAccount",
-    "sendByApi": true
-  }
-}
-```
-<!-- fetch(`https://api.green-api.com/waInstance1103182240/deleteNotification/86613b0df72249609407c4b78b865aa39de60ebcaf644e6cb3/1`)
- -->
+   Сначала клонируйте репозиторий на свой локальный компьютер:
+
+   ```bash
+   git clone https://github.com/edochik/WhatsApp.git
+   ```
+
+2. **Установите зависимости**
+
+   ```bash
+   npm install
+   ```
+
+3. **Запустите проект**
+
+   ```bash
+   npm run start
+   ```
+
+   Приложение будет доступно по умолчанию по адресу http://localhost:5173
