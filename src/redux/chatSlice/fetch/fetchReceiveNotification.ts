@@ -4,6 +4,7 @@ import { fetchDeleteNotification } from "./fetchDeleteNotification.ts";
 import { WebhookMessage } from "./WebhookMessage.interface.ts";
 
 const ms: number = 3000;
+//! интерфейс повтор  Record<string, string>
 
 export const fetchReceiveNotification = async (data: Record<string, string>) => {
 	const { idInstance, apiTokenInstance, phoneNumber } = data;

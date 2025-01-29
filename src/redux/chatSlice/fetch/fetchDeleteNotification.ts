@@ -1,5 +1,7 @@
 import { URL } from "../../../utils/api.ts";
 
+
+//! интерфейс повтор
 interface Data {
 	idInstance: string,
 	apiTokenInstance: string,

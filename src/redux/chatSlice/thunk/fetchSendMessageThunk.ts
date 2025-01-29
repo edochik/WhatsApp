@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchSendMessage } from "../fetch/fetchSendMessage.ts";
 
+
+// ! Повтор интерфейс
 export type fetchSendMessageData = {
 	idInstance: string,
 	apiTokenInstance: string,
@@ -8,7 +10,7 @@ export type fetchSendMessageData = {
 	message: string
 }
 
-interface sendMessageResponse {
+export interface sendMessageResponse {
 	idMessage: string
 }
 
@@ -19,7 +21,7 @@ export const fetchSendMessageThunk = createAsyncThunk<
 		'fetchSendMessageThunk',
 		async (data, { rejectWithValue }) => {
 			try {
-				const response = await fetchSendMessage(data);
+				const response: sendMessageResponse = await fetchSendMessage(data);
 				return response
 			} catch {
 				return rejectWithValue("Что-то пошло не так, попробуйте позже")

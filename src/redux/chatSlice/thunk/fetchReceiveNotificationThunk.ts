@@ -15,7 +15,7 @@ export const fetchReceiveNotificationThunk = createAsyncThunk<
 				const response = await fetchReceiveNotification(data);
 				return response
 			} catch {
-				return rejectWithValue("Ошибка получения данных")
+				return rejectWithValue("Что-то пошло не так, попробуйте позже")
 			}
 		}
 	)

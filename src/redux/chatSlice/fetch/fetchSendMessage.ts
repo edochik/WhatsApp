@@ -1,8 +1,8 @@
 import { URL } from "../../../utils/api.ts";
-import { fetchSendMessageData } from "../thunk/fetchSendMessageThunk.ts";
+import { fetchSendMessageData, sendMessageResponse } from "../thunk/fetchSendMessageThunk.ts";
 
 
-export const fetchSendMessage = async (data: fetchSendMessageData) => {
+export const fetchSendMessage = async (data: fetchSendMessageData): Promise<sendMessageResponse> => {
 	const { idInstance, apiTokenInstance, phoneNumber, message } = data;
 	const response = await fetch(`${URL}waInstance${idInstance}/SendMessage/${apiTokenInstance}`, {
 		method: 'POST',

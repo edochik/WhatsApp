@@ -1,14 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchStateInstanceThunk } from "./fetchStateInstanceThunk.ts";
-
-export interface InitialAuthState {
-	error: null | string;
-	loading: 'idle' | 'pending' | 'succeeded' | 'failed';
-	idInstance: string;
-	apiTokenInstance: string;
-	isStateInstance: boolean,
-	phoneNumber: string,
-}
+import { InitialAuthState } from "./authSlice.interface.ts";
 
 const initialState: InitialAuthState = {
 	error: null,
