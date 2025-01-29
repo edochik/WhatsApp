@@ -1,12 +1,11 @@
 import { URL } from "../../../utils/api.ts";
 import { sleep } from "./sleep.ts";
 import { fetchDeleteNotification } from "./fetchDeleteNotification.ts";
-import { WebhookMessage } from "./WebhookMessage.interface.ts";
+import { ReceiveNotificationData, ReceiveNotificationResponse, WebhookMessage } from "../chatSlice.interface.ts";
 
 const ms: number = 3000;
-//! интерфейс повтор  Record<string, string>
 
-export const fetchReceiveNotification = async (data: Record<string, string>) => {
+export const fetchReceiveNotification = async (data: ReceiveNotificationData): Promise<ReceiveNotificationResponse> => {
 	const { idInstance, apiTokenInstance, phoneNumber } = data;
 	while (true) {
 		try {

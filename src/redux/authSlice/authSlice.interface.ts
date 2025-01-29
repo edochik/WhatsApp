@@ -8,7 +8,6 @@ export interface InitialAuthState {
 }
 
 export type FetchStateInstanceData = Pick<InitialAuthState, 'idInstance' | 'apiTokenInstance'>;
+export type StateInstanceResponse = { stateInstance: string; }
 
-export interface StateInstanceResponse {
-	stateInstance: string;
-}
+

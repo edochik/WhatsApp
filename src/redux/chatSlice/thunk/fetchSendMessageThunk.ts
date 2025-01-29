@@ -1,27 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { SendMessageData, SendMessageResponse } from "../chatSlice.interface.ts";
 import { fetchSendMessage } from "../fetch/fetchSendMessage.ts";
 
 
-// ! Повтор интерфейс
-export type fetchSendMessageData = {
-	idInstance: string,
-	apiTokenInstance: string,
-	phoneNumber: string,
-	message: string
-}
-
-export interface sendMessageResponse {
-	idMessage: string
-}
 
 export const fetchSendMessageThunk = createAsyncThunk<
-	sendMessageResponse,
-	fetchSendMessageData,
+	SendMessageResponse,
+	SendMessageData,
 	{ rejectValue: string }>(
 		'fetchSendMessageThunk',
 		async (data, { rejectWithValue }) => {
 			try {
-				const response: sendMessageResponse = await fetchSendMessage(data);
+				const response: SendMessageResponse = await fetchSendMessage(data);
 				return response
 			} catch {
 				return rejectWithValue("Что-то пошло не так, попробуйте позже")

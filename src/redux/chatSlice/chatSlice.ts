@@ -1,18 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchSendMessageThunk } from "./thunk/fetchSendMessageThunk.ts";
 import { fetchReceiveNotificationThunk } from "./thunk/fetchReceiveNotificationThunk.ts";
+import { InitialMessageState } from "./chatSlice.interface.ts";
 
-export interface Message {
-	idMessage: string;
-	textMessage: string;
-	isOwnMessage: boolean
-}
 
-export interface InitialMessageState {
-	messages: Message[]
-	message: string
-	error: null | string;
-}
 
 const initialState: InitialMessageState = {
 	error: null,
