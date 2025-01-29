@@ -11,7 +11,7 @@ export interface InitialMessageState {
 	message: string
 	error: null | string;
 }
-
+// idInstance: string; apiTokenInstance: string; phoneNumber: string;
 export type AuthData = Pick<InitialAuthState, 'idInstance' | 'apiTokenInstance'>;
 export type SendMessageData = AuthData & { phoneNumber: string; message: string };
 export type SendMessageResponse = { idMessage: string }
