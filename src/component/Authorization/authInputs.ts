@@ -1,9 +1,6 @@
-import { AuthData } from "../../redux/chatSlice/chatSlice.interface.ts";
-
-type ValueProps = AuthData & { phoneNumber: string };
-
+import { AuthData } from "../../redux/authSlice/authSlice.interface.ts";
 interface AuthInputs {
-	value: keyof ValueProps;
+	value: keyof Omit<AuthData, 'isStateInstance'>;
 	type: string;
 	required: boolean;
 	minLength?: number,
@@ -22,7 +19,7 @@ export const authInputs: AuthInputs[] = [
 		required: true,
 	},
 	{
-		value: 'phoneNumber', 
+		value: 'phoneNumber',
 		type: 'text',
 		required: true,
 		minLength: 11,

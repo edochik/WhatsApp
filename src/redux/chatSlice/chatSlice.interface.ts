@@ -1,4 +1,4 @@
-import { InitialAuthState } from "../authSlice/authSlice.interface.ts";
+import { AuthData } from "../authSlice/authSlice.interface.ts";
 
 export interface Message {
 	idMessage: string;
@@ -11,13 +11,14 @@ export interface InitialMessageState {
 	message: string
 	error: null | string;
 }
-// idInstance: string; apiTokenInstance: string; phoneNumber: string;
-export type AuthData = Pick<InitialAuthState, 'idInstance' | 'apiTokenInstance'>;
-export type SendMessageData = AuthData & { phoneNumber: string; message: string };
-export type SendMessageResponse = { idMessage: string }
-export type ReceiveNotificationResponse = Pick<Message, 'idMessage' | 'textMessage'>
-export type DeleteNotificationData = AuthData & { receiptId: number };
 
+export type SendMessageData = Omit<AuthData, 'isStateInstance'> & { message: string };
+export type SendMessageResponse = { idMessage: string }
+
+export type ReceiveNotificationResponse = Omit<Message, 'isOwnMessage'>
+export type ReceiveNotificationData = Pick<AuthData, 'idInstance' | 'apiTokenInstance'>
+
+export type DeleteNotificationData = Omit<AuthData, 'isStateInstance' | 'phoneNumber'> & { receiptId: number };
 
 export interface WebhookMessage {
 	receiptId: number;

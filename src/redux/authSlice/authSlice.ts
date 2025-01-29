@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchStateInstanceThunk } from "./fetchStateInstanceThunk.ts";
-import { InitialAuthState } from "./authSlice.interface.ts";
+import { AuthData, InitialAuthState } from "./authSlice.interface.ts";
 
 const initialState: InitialAuthState = {
 	error: null,
@@ -15,7 +15,7 @@ export const authSlice = createSlice({
 	name: 'authSlice',
 	initialState,
 	reducers: {
-		updateAuth: (state, action: PayloadAction<{ key: keyof InitialAuthState, value: string }>) => {
+		updateAuth: (state, action: PayloadAction<{ key: keyof AuthData, value: string }>) => {
 			const { key, value } = action.payload;
 			(state[key] as string) = value;
 		},

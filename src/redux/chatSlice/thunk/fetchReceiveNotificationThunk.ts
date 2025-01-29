@@ -1,13 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchReceiveNotification } from "../fetch/fetchReceiveNotification.ts";
-import { AuthData, ReceiveNotificationResponse } from "../chatSlice.interface.ts";
+import { ReceiveNotificationData, ReceiveNotificationResponse } from "../chatSlice.interface.ts";
 
 export const fetchReceiveNotificationThunk = createAsyncThunk<
 	ReceiveNotificationResponse,
-	AuthData,
+	ReceiveNotificationData,
 	{ rejectValue: string }>(
 		'fetchListenerMessageThunk',
-		async (data: AuthData, { rejectWithValue }) => {
+		async (data: ReceiveNotificationData, { rejectWithValue }) => {
 			try {
 				const response: ReceiveNotificationResponse = await fetchReceiveNotification(data);
 				return response

@@ -1,5 +1,5 @@
 import { Chat } from "../component/Chat";
-import { Authorization } from "../component/Authorization/index.tsx";
+import { Authorization } from "../component/Authorization/";
 import { useAppSelector } from "../redux/hooks.ts";
 
 function App() {

@@ -1,11 +1,9 @@
 import { API_URL } from "../../../utils/api.ts";
 import { sleep } from "./sleep.ts";
 import { fetchDeleteNotification } from "./fetchDeleteNotification.ts";
-import { AuthData, ReceiveNotificationResponse, WebhookMessage } from "../chatSlice.interface.ts";
-
+import { ReceiveNotificationData, ReceiveNotificationResponse, WebhookMessage } from "../chatSlice.interface.ts";
 const ms: number = 3000;
-
-export const fetchReceiveNotification = async (data: AuthData): Promise<ReceiveNotificationResponse> => {
+export const fetchReceiveNotification = async (data: ReceiveNotificationData): Promise<ReceiveNotificationResponse> => {
 	const { idInstance, apiTokenInstance } = data;
 	while (true) {
 		try {

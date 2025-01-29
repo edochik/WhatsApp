@@ -2,9 +2,9 @@ import s from "./Authorization.module.scss";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
 import { updateAuth } from "../../redux/authSlice/authSlice.ts";
 import { fetchStateInstanceThunk } from "../../redux/authSlice/fetchStateInstanceThunk.ts";
-import { InitialAuthState } from "../../redux/authSlice/authSlice.interface.ts";
 import { InputField } from "../InputField/InputField.tsx";
 import { authInputs } from "./authInputs.ts";
+import { AuthData } from "../../redux/authSlice/authSlice.interface.ts";
 
 const Authorization = () => {
   const dispatch = useAppDispatch();
@@ -12,7 +12,7 @@ const Authorization = () => {
     (state) => state.authorization
   );
 
-  const keys = { idInstance, apiTokenInstance, phoneNumber };
+  const AuthObject = { idInstance, apiTokenInstance, phoneNumber };
 
   const isEmptyAuth = [idInstance, apiTokenInstance, phoneNumber]
     .map((value) => value.length)
@@ -23,7 +23,7 @@ const Authorization = () => {
     if (name === "phoneNumber" && !/^\d*$/.test(value)) {
       return;
     }
-    dispatch(updateAuth({ key: name as keyof InitialAuthState, value }));
+    dispatch(updateAuth({ key: name as keyof AuthData, value }));
   };
 
   const handleAuthorization = () => {
@@ -44,7 +44,7 @@ const Authorization = () => {
             key={value}
             textLabel={value === "phoneNumber" ? "phone" : value}
             name={value}
-            value={keys[value]}
+            value={AuthObject[value]}
             onChange={(e) => handleUpdateAuth(e)}
             {...rest}
           />
