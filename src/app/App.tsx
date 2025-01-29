@@ -7,7 +7,11 @@ function App() {
   if (!isStateInstance) {
     return <Authorization />;
   }
-  return <Chat />;
+  return (
+    <>
+      <Chat />
+    </>
+  );
 }
 
 export default App;
