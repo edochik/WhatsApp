@@ -13,13 +13,9 @@ export interface InitialMessageState {
 }
 
 export type AuthData = Pick<InitialAuthState, 'idInstance' | 'apiTokenInstance'>;
-
 export type SendMessageData = AuthData & { phoneNumber: string; message: string };
 export type SendMessageResponse = { idMessage: string }
-
 export type ReceiveNotificationResponse = Pick<Message, 'idMessage' | 'textMessage'>
-export type ReceiveNotificationData = Omit<SendMessageData, 'message'>
-
 export type DeleteNotificationData = AuthData & { receiptId: number };
 
 

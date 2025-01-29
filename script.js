@@ -26,3 +26,7 @@
 // };
 
 // console.log();
+
+const value = '2222'
+const test = (/^\d+$/).test(value)
+console.log(test);

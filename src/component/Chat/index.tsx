@@ -1,4 +1,4 @@
-import { InputUser } from "../InputMessage/index.tsx";
+import { InputMessage } from "../InputMessage/";
 import { MessagePanel } from "../MessagePanel/";
 import s from "./Chat.module.scss";
 
@@ -7,7 +7,7 @@ const Chat = () => {
     <div className={s.Chat}>
       <div className={s.wrapper}>
         <MessagePanel />
-        <InputUser />
+        <InputMessage />
       </div>
     </div>
   );

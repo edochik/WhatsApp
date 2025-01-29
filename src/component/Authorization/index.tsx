@@ -16,13 +16,14 @@ const Authorization = () => {
 
   const handleUpdateAuth = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
+    if (name === "phoneNumber" && !/^\d*$/.test(value)) {
+      return;
+    }
     dispatch(updateAuth({ key: name as keyof InitialAuthState, value }));
   };
 
   const handleAuthorization = () => {
-    if (phoneNumber.length === 11) {
-      dispatch(fetchStateInstanceThunk({ idInstance, apiTokenInstance }));
-    }
+    dispatch(fetchStateInstanceThunk({ idInstance, apiTokenInstance }));
   };
 
   return (
@@ -41,6 +42,7 @@ const Authorization = () => {
           onChange={(e) => handleUpdateAuth(e)}
           type="text"
           name="idInstance"
+          required
         />
       </label>
       <label className={s.label}>
@@ -51,6 +53,7 @@ const Authorization = () => {
           onChange={(e) => handleUpdateAuth(e)}
           type="text"
           name="apiTokenInstance"
+          required
         />
       </label>
       <label className={s.label}>
@@ -61,6 +64,16 @@ const Authorization = () => {
           onChange={(e) => handleUpdateAuth(e)}
           type="text"
           name="phoneNumber"
+          minLength={11}
+          maxLength={11}
+          required
+          onInvalid={(e) => {
+            const target = e.target as HTMLInputElement;
+            target.setCustomValidity("");
+            if (!target.validity.valid) {
+              target.setCustomValidity("Пример : 79601114455");
+            }
+          }}
         />
       </label>
       {error && <div>{error}</div>}

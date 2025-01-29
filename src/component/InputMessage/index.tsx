@@ -44,6 +44,7 @@ const InputMessage = () => {
           onChange={(e) => handleUpdateMessage(e)}
           aria-label="Сообщение пользователя"
           placeholder="Type a message"
+          autoFocus
         />
         <button className={s.button} type="submit">
           <span role="img" aria-label="send">
@@ -55,4 +56,4 @@ const InputMessage = () => {
   );
 };
 
-export { InputMessage as InputUser };
+export { InputMessage };
