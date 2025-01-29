@@ -14,7 +14,7 @@ export const fetchSendMessageThunk = createAsyncThunk<
 				const response: SendMessageResponse = await fetchSendMessage(data);
 				return response
 			} catch {
-				return rejectWithValue("Что-то пошло не так, попробуйте позже")
+				return rejectWithValue("Что-то пошло не  (fetchSendMessageThunk), попробуйте позже")
 			}
 		}
 	)

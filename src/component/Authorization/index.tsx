@@ -1,10 +1,8 @@
 import s from "./Authorization.module.scss";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
-import {
-  InitialAuthState,
-  updateAuth,
-} from "../../redux/authSlice/authSlice.ts";
+import { updateAuth } from "../../redux/authSlice/authSlice.ts";
 import { fetchStateInstanceThunk } from "../../redux/authSlice/fetchStateInstanceThunk.ts";
+import { InitialAuthState } from "../../redux/authSlice/authSlice.interface.ts";
 
 const Authorization = () => {
   const dispatch = useAppDispatch();

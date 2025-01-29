@@ -3,8 +3,6 @@ import { fetchSendMessageThunk } from "./thunk/fetchSendMessageThunk.ts";
 import { fetchReceiveNotificationThunk } from "./thunk/fetchReceiveNotificationThunk.ts";
 import { InitialMessageState } from "./chatSlice.interface.ts";
 
-
-
 const initialState: InitialMessageState = {
 	error: null,
 	messages: [],
@@ -27,9 +25,15 @@ export const chatSlice = createSlice({
 				state.messages.unshift({ idMessage, textMessage: message, isOwnMessage: true })
 				state.message = ""
 			})
+			.addCase(fetchSendMessageThunk.rejected, (state, action) => {
+				state.error = action.payload as string;
+			})
 			.addCase(fetchReceiveNotificationThunk.fulfilled, (state, action) => {
 				const { idMessage, textMessage } = action.payload
 				state.messages.unshift({ idMessage, textMessage, isOwnMessage: false });
+			})
+			.addCase(fetchReceiveNotificationThunk.rejected, (state, action) => {
+				state.error = action.payload as string;
 			})
 	}
 })

@@ -9,7 +9,7 @@ export interface Message {
 export interface InitialMessageState {
 	messages: Message[]
 	message: string
-	error: null | string; //! нет обработки
+	error: null | string;
 }
 
 export type AuthData = Pick<InitialAuthState, 'idInstance' | 'apiTokenInstance'>;
