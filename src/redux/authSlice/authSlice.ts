@@ -5,10 +5,10 @@ import { AuthData, InitialAuthState } from "./authSlice.interface.ts";
 const initialState: InitialAuthState = {
 	error: null,
 	loading: 'idle',
-	idInstance: '1103182240',
-	apiTokenInstance: '86613b0df72249609407c4b78b865aa39de60ebcaf644e6cb3',
+	idInstance: '',
+	apiTokenInstance: '',
 	isStateInstance: false,
-	phoneNumber: '79110995379',
+	phoneNumber: '',
 }
 
 export const authSlice = createSlice({

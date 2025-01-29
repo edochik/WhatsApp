@@ -1,5 +1,6 @@
 {
   "name": "whatsapp",
+  "homepage": "https://edochik.github.io/WhatsApp/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,11 +8,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.1",
     "classnames": "^2.5.1",
+    "gh-pages": "^6.3.0",
     "normalize.css": "^8.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
